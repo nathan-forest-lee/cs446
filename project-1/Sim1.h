@@ -23,7 +23,7 @@ FUNCTION PROTOTYPES
 ----------------------------------------------------------------------------- */
 void read_file(string config_file);   //reads contents of file onto console
 void write_file(string file_input);   //writes contents of a file into another file
-//test test test
+void test_func(int i);
 
 
 #include "Sim1_imp.cpp"
