@@ -1,3 +1,13 @@
+current implementation:
+i have read the configuration file and stored the contents of it in a vector,
+i have also from line 3 of the config file i extracted the mdf and opened and stored the contents of that in another vector.
+i now have both file types stored in vectors.
+
+to do:
+operation interpretation
+error handeling
+
+
 1 Introduction
 This set of programming assignments is designed to materialize all of the major operating systems concepts in the CS 446/646 course by allowing you to make design decisions during development of an operating system. These assignments will increase your understanding of operating systems and incorporate common aspects of industry and/or advanced academia.
 Over the course of the semester, you will complete one introductory assignment and three simulation assignments. Graduate students will have to complete all the assignments in C. After the completion of all the simulation assignments, you will have simulated the core components of a modern day operating system. Each of the assignments build tremendously upon the previous assignment, thus it is advantageous for you to design each assignment with all future assignments in mind. This will significantly reduce your workload in the long run.
