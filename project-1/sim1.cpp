@@ -42,6 +42,7 @@ int main(int argc, char *argv[])
   // // cout << data_vector[0] << endl;
   // // cout << data_vector[1] << endl;
   // cout << data_vector[2] << endl;
+  // config_struct->version_num = stoi(data_vector[2]);
   // cout << data_vector[3] << endl;
   // cout << data_vector[4] << endl;
   // cout << data_vector[5] << endl;
@@ -55,7 +56,9 @@ int main(int argc, char *argv[])
   // // cout << data_vector[13] << endl;
   // cout << "end" << endl;
 
-  cout << config_struct->monitor << endl;
+  fill_struct(config_struct, data_vector);
+  cout << config_struct->version_num << endl;
+  cout << config_struct->projector << endl;
 
   // meta_data = meta_data_extract(data_vector);
   // meta_data_interpret(meta_data, meta_data_vector);

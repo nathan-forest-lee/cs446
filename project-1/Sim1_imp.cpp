@@ -174,15 +174,17 @@ description: takes contents of vector and fills struct with neccessary operation
 ----------------------------------------------------------------------------- */
 void fill_struct(Operation_struct *structure, vector<string> &data_vector) 
 {
-    string *ptr = data_vector.data();
-    structure->version_num = stof(*ptr);
-    // structure->metaDataPath = *(ptr+1);
-    structure->projector = stoi(*(ptr+2));
-    structure->processor = stoi(*(ptr+3));
-    structure->keyboard = stoi(*(ptr+4));
-    structure->monitor = stoi(*(ptr+5));
-    structure->scanner = stoi(*(ptr+6));
-    structure->hard_drive = stoi(*(ptr+7));
+    // string *ptr = data_vector.data();
+    // structure->version_num = stof(*ptr);
+    // // structure->metaDataPath = *(ptr+1);
+    // structure->projector = stoi(*(ptr+2));
+    // structure->processor = stoi(*(ptr+3));
+    // structure->keyboard = stoi(*(ptr+4));
+    // structure->monitor = stoi(*(ptr+5));
+    // structure->scanner = stoi(*(ptr+6));
+    // structure->hard_drive = stoi(*(ptr+7));
     // structure->logCmd = *(ptr+8);
     // structure->logPath = *(ptr+9);
+    structure->version_num = stoi(data_vector[2]);
+    structure->projector = stoi(data_vector[4]);
 }
