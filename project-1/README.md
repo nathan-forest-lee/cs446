@@ -1,11 +1,5 @@
-current implementation:
-i have read the configuration file and stored the contents of it in a vector,
-i have also from line 3 of the config file i extracted the mdf and opened and stored the contents of that in another vector.
-i now have both file types stored in vectors.
-
-to do:
-operation interpretation
-error handeling
+just finished adding struct, need to fill it with proper info from config,
+still need to parse meta data file and be able to add it into a struct.
 
 
 1 Introduction
