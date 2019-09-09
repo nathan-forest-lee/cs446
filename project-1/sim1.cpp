@@ -20,20 +20,21 @@ NOTES:
 ------------------------------------------------------------------------------- */
 int main(int argc, char *argv[])
 {
-  string holder, line;  //holds name of config file, line is for file input
-  string extension = ".conf";   //adds extension to file name
-  // char **ptr;           //ptr to the argv[] pointer
-  // ptr = &argv[0];
-  // cout << *ptr << endl;
+  string holder, line, meta_data;  //holds name of config file, line is for file input
+  vector<string> data_vector;   //hold contents of configuration file
+  vector<string> meta_data_vector;    //hold contents of meta data file
 
   //iterates through each batch command to take on each file
   for(int i = 1; i < argc; i++)
   {
     holder = argv[i];
-    holder += extension;    //concatenating the two strings
-    read_file(holder);
+    read_file(holder, data_vector);
     write_file(holder);
   }
+
+  meta_data = meta_data_extract(data_vector);
+  meta_data_interpret(meta_data, meta_data_vector);
+  read_file(meta_data, meta_data_vector);
 
   return 0;
 }
