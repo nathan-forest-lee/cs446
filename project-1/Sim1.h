@@ -15,6 +15,8 @@
 
 #include <iostream>
 #include <string>
+#include <string.h>
+#include <cctype>
 #include <fstream>
 #include <vector>
 using namespace std;
@@ -27,10 +29,11 @@ void read_file(string config_file, vector<string> &vector); //reads contents of 
 void write_file(string file_input);   //writes contents of a file into another file
 bool config_validity(vector<string> &data_vector);       //parse through and deals with error handeling
 bool meta_validity(vector<string> &data_vector);           //checks extracrted meta data file from config file
-
-
-//for testing!!!!!
 void file_interpretation(string file_name, vector<string> &data_vector);
+// string getKeyword(string &line);
+// char getCommand(string &line);
+void look_up_table(vector<string> &data_vector);
+void meta_parser(string meta_file, vector<string> &meta_vector);
 
 #include "Sim1_imp.cpp"
 #endif

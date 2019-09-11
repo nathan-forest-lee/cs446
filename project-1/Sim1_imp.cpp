@@ -28,7 +28,7 @@ void read_file(string file, vector<string> &vector)
   {
     while (getline(config_file,line))
     {
-      cout << line << '\n';
+      // cout << line << '\n';
       vector.push_back(line);
     }
     config_file.close();
@@ -128,3 +128,61 @@ bool meta_validity(vector<string> &data_vector)
     return status;
   }
 }
+
+
+/* -----------------------------------------------------------------------------
+function name: look_up_table
+description: takes the elements of the data-Vector and associates it with a operator keycharacter
+----------------------------------------------------------------------------- */
+void look_up_table(vector<string> &data_vector)
+{
+    for (int i = 0; i < data_vector.size(); i++)
+  {
+    cout << data_vector[i] << " " << i << endl;
+  }
+}
+
+
+void meta_parser(string meta_file, vector<string> &meta_vector)
+{
+  ofstream data_file;
+  data_file.open(meta_file);
+
+  data_file.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+}
+
+
+// /* -----------------------------------------------------------------------------
+// function name: meta_validity
+// description: checks if the extracted file name for the meta data file is valid
+// ----------------------------------------------------------------------------- */
+// string getKeyword (string &line) {
+//     string keyword;
+//     int start;
+//     start = (line.find('{')+1);
+//     for( int i = start; line[i]!= '}'; i++){
+//         keyword += line[i];
+//         // cout << "keyword[]:" << keyword[i-start] << endl;
+//         // cout << "line[]:" << line[i] << endl;
+
+//     }
+//     cout << keyword;
+//     return keyword;
+// }
+
+
+// char getCommand (string &line) {
+//     char letter = line[0];
+//     try {
+//         if (!isalpha(letter)) {
+//             throw (11);
+//         if (!isupper(letter)) {
+//             throw(11);
+//             }
+//         }
+//     } catch (int i) {
+//         cout << "\nINVALID COMMAND: " << letter << endl;
+//         return 0;
+//     }
+//     return letter;
+// }
