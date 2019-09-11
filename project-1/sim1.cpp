@@ -32,6 +32,7 @@ int main(int argc, char *argv[])
     write_file(holder);
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
   // cout << "start" << endl;
   // // cout << data_vector[0] << endl;
   // // cout << data_vector[1] << endl;
@@ -57,6 +58,8 @@ int main(int argc, char *argv[])
   // meta_data = meta_data_extract(data_vector);
   // meta_data_interpret(meta_data, meta_data_vector);
   // read_file(meta_data, meta_data_vector);
+=======
+>>>>>>> parent of 86e595b... struct and vector parse
 =======
 >>>>>>> parent of 86e595b... struct and vector parse
 
