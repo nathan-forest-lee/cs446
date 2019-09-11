@@ -40,74 +40,30 @@ void read_file(string file, vector<string> &vector)
 function name: write_file
 description: takes file contents and writes to specified file
 ----------------------------------------------------------------------------- */
-void write_file(string file)
-{
-  string line;
-  ifstream config_file;
-  // ofstream out_file;
+// void write_file(string file)
+// {
+//   string line;
+//   // ifstream log;
+//   // ofstream out_file;
 
-  ofstream out_file("config_test.mdf", ios::app);
+//   ofstream out_file("config_test.mdf", ios::app);
 
-  // out_file.open("Test_1a.mdf");
-  config_file.open(file);
+//   // out_file.open("Test_1a.mdf");
+//   config_file.open(file);
 
-  //prints any file input below(currently prints to console)
-  if (config_file.is_open())
-  {
-    while (getline(config_file,line))
-    {
-      out_file << line << '\n';
-    }
-    config_file.close();
-  }
-  else cout << "Unable to open file";
-  out_file.close();
+//   //prints any file input below(currently prints to console)
+//   if (config_file.is_open())
+//   {
+//     while (getline(config_file,line))
+//     {
+//       out_file << line << '\n';
+//     }
+//     config_file.close();
+//   }
+//   else cout << "Unable to open file";
+//   out_file.close();
 
-}
-
-/* -----------------------------------------------------------------------------
-function name: meta_data_extract
-description: finds file name for meta data file to interpret
------------------------------------------------------------------------------ */
-string meta_data_extract(vector<string> &data_vector)
-{
-  //sentence_holder contains the entire 3rd line of config file
-  //meta_file_name contains the extracted file name for the mdf file.
-  //char_test is to test when we pass the : to notify that the name of mdf will begin
-  //iterator is to keep track of the index of the string im in
-  string sentence_holder, meta_file_name;
-  char char_test;
-  int iterator = 0;
-
-  sentence_holder = data_vector[3];
-
-  while(sentence_holder[iterator] != ':')
-  {
-    iterator++;
-  }
-  iterator = iterator + 2;
-
-  while(sentence_holder[iterator] != '\0')
-  {
-    meta_file_name += sentence_holder[iterator];
-    iterator++;
-  }
-
-  return meta_file_name;
-}
-
-
-/* -----------------------------------------------------------------------------
-function name: meta_data_interpret
-description: opens the mdf file and stores contents into a vector
------------------------------------------------------------------------------ */
-void meta_data_interpret(string mdf_name, vector<string> &meta_data_vector)
-{
-//need to create file to open mdf
-//need to getline string lines into vector
-}
-
-
+// }
 
 
 
@@ -133,7 +89,7 @@ void file_interpretation(string file_name, vector<string> &data_vector)
                 copy = true;
             }
             if (copy == true) {
-                if (line[i]!= ':' && ' ') {
+                if (line[i]!= ':' && line[i] != ' ') {
                     newline += line[i];
                 }
             }
@@ -148,4 +104,27 @@ void file_interpretation(string file_name, vector<string> &data_vector)
 }
 
 
+/* -----------------------------------------------------------------------------
+function name: meta_validity
+description: checks if the extracted file name for the meta data file is valid
+----------------------------------------------------------------------------- */
+bool meta_validity(vector<string> &data_vector)
+{
+  string file_name;   //hold the name of the file
+  ifstream meta_file;   //ifstream that will open the meta data file
+  bool status;
 
+  file_name = data_vector[3];
+  meta_file.open(file_name);
+
+  if(meta_file.is_open())
+  {
+    status = true;
+    meta_file.close();
+    return status;
+  }
+  else
+  {
+    return status;
+  }
+}

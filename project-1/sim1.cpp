@@ -20,9 +20,10 @@ NOTES:
 ------------------------------------------------------------------------------- */
 int main(int argc, char *argv[])
 {
-  string holder, line, meta_data;  //holds name of config file, line is for file input
+  string holder, line, meta_data, log_file;  //holds name of config file, line is for file input
   vector<string> data_vector;   //hold contents of configuration file
   vector<string> meta_data_vector;    //hold contents of meta data file
+  bool validity;      //use for error handling
 
   //iterates through each batch command to take on each file
   for(int i = 1; i < argc; i++)
@@ -33,9 +34,20 @@ int main(int argc, char *argv[])
     // write_file(holder);
   }
 
-  for (int i = 0; i < data_vector.size(); i++)
+  //checks validity of the meta data file name extrtacted from the configuration file
+  validity = meta_validity(data_vector);
+  if(validity == false)
   {
-    cout << data_vector[i] << endl;
+    cout << "invalid meta data file." << endl;
+    return 0;
   }
+
+  log_file = data_vector[12];
+
+  // for (int i = 0; i < data_vector.size(); i++)
+  // {
+  //   cout << data_vector[i] << " " << i << endl;
+  // }
+
   return 0;
 }
