@@ -145,12 +145,11 @@ void look_up_table(vector<string> &data_vector)
 
 void meta_parser(string meta_file, vector<string> &meta_vector)
 {
-  ofstream data_file;
+  ifstream data_file;
   data_file.open(meta_file);
 
   data_file.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
 }
-
 
 // /* -----------------------------------------------------------------------------
 // function name: meta_validity

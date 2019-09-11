@@ -45,7 +45,13 @@ int main(int argc, char *argv[])
     read_file(meta_data_file, meta_data_vector);
   }
 
-  meta_parser(meta_data_file, meta_data_vector);
+  // ifstream data_file;
+  // data_file.open(meta_data_file);
+  // data_file.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+
+
+  // meta_parser(meta_data_file, meta_data_vector);
+
   log_file = data_vector[12];
   // look_up_table(data_vector);
 
