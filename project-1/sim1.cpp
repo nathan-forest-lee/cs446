@@ -28,44 +28,14 @@ int main(int argc, char *argv[])
   for(int i = 1; i < argc; i++)
   {
     holder = argv[i];
-    read_file(holder, data_vector);
-    write_file(holder);
+    file_interpretation(holder, data_vector);
+    // read_file(holder, data_vector);
+    // write_file(holder);
   }
-<<<<<<< HEAD
-<<<<<<< HEAD
-  // cout << "start" << endl;
-  // // cout << data_vector[0] << endl;
-  // // cout << data_vector[1] << endl;
-  // cout << data_vector[2] << endl;
-  // config_struct->version_num = stoi(data_vector[2]);
-  // cout << data_vector[3] << endl;
-  // cout << data_vector[4] << endl;
-  // cout << data_vector[5] << endl;
-  // cout << data_vector[6] << endl;
-  // cout << data_vector[7] << endl;
-  // cout << data_vector[8] << endl;
-  // cout << data_vector[9] << endl;
-  // cout << data_vector[10] << endl;
-  // cout << data_vector[11] << endl;
-  // cout << data_vector[12] << endl;
-  // // cout << data_vector[13] << endl;
-  // cout << "end" << endl;
 
-  fill_struct(config_struct, data_vector);
-  cout << config_struct->version_num << endl;
-  cout << config_struct->projector << endl;
-
-  // meta_data = meta_data_extract(data_vector);
-  // meta_data_interpret(meta_data, meta_data_vector);
-  // read_file(meta_data, meta_data_vector);
-=======
->>>>>>> parent of 86e595b... struct and vector parse
-=======
->>>>>>> parent of 86e595b... struct and vector parse
-
-  meta_data = meta_data_extract(data_vector);
-  meta_data_interpret(meta_data, meta_data_vector);
-  read_file(meta_data, meta_data_vector);
-
+  for (int i = 0; i < data_vector.size(); i++)
+  {
+    cout << data_vector[i] << endl;
+  }
   return 0;
 }

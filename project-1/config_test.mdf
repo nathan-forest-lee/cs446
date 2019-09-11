@@ -40,3 +40,31 @@
 11 Log: Log to Both
 12 Log File Path: logfile_1.lgf
 13 End Simulator Configuration File
+
+1 Start Simulator Configuration File
+2 Version/Phase: 1.0
+3 File Path: Test_1a.mdf
+4 Monitor display time {msec}: 20
+5 Processor cycle time {msec}: 10
+6 Mouse cycle time {msec}: 25
+7 Hard drive cycle time {msec}: 15
+8 Keyboard cycle time {msec}: 50
+9 Memory cycle time {msec}: 30
+10 Printer cycle time {msec}: 10
+11 Log: Log to Both
+12 Log File Path: logfile_1.lgf
+13 End Simulator Configuration File
+
+1 Start Simulator Configuration File
+2 Version/Phase: 1.0
+3 File Path: Test_1a.mdf
+4 Monitor display time {msec}: 20
+5 Processor cycle time {msec}: 10
+6 Mouse cycle time {msec}: 25
+7 Hard drive cycle time {msec}: 15
+8 Keyboard cycle time {msec}: 50
+9 Memory cycle time {msec}: 30
+10 Printer cycle time {msec}: 10
+11 Log: Log to Both
+12 Log File Path: logfile_1.lgf
+13 End Simulator Configuration File

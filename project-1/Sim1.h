@@ -19,14 +19,17 @@
 #include <vector>
 using namespace std;
 
+
 /* -----------------------------------------------------------------------------
 FUNCTION PROTOTYPES
 ----------------------------------------------------------------------------- */
-void read_file(string config_file, vector<string> &vector);   //reads contents of file onto console and into vector
+void read_file(string config_file, vector<string> &vector); //reads contents of file onto console and into vector
 void write_file(string file_input);   //writes contents of a file into another file
 bool config_validity(vector<string> &data_vector);       //parse through and deals with error handeling
 string meta_data_extract(vector<string> &data_vector);      //parse through to find file name for meta data file
 
+//for testing!!!!!
+void file_interpretation(string file_name, vector<string> &data_vector);
 
 #include "Sim1_imp.cpp"
 #endif
