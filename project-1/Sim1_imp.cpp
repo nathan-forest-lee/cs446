@@ -107,6 +107,7 @@ void meta_data_interpret(string mdf_name, vector<string> &meta_data_vector)
 //need to getline string lines into vector
 }
 
+<<<<<<< HEAD
 
 
 /* -----------------------------------------------------------------------------
@@ -188,3 +189,5 @@ void fill_struct(Operation_struct *structure, vector<string> &data_vector)
     structure->version_num = stoi(data_vector[2]);
     structure->projector = stoi(data_vector[4]);
 }
+=======
+>>>>>>> parent of 86e595b... struct and vector parse
