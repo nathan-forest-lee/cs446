@@ -172,9 +172,8 @@ void meta_parser(string meta_file, vector<string> &meta_vector)
       meta_char = get_command(line);
       keyword = get_keyword(line);
       duty_cycles = num_of_cycles(line);
+      //put calculations function right here pass it the duty_cycles and keyword and data_vector 
     }
-    // meta_char = get_command(line);
-    // keyword = get_keyword(line);
   }
 }
 

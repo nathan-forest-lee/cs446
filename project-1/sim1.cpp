@@ -46,13 +46,11 @@ int main(int argc, char *argv[])
   }
 
   meta_parser(meta_data_file, meta_data_vector);
-
-  // ifstream data_file;
-  // data_file.open(meta_data_file);
-  // data_file.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-
-
-  // meta_parser(meta_data_file, meta_data_vector);
+  
+  // for (int i = 0; i < data_vector.size(); i++)
+  // {
+  //   cout << data_vector[i] << " " << i << endl;
+  // }
 
   log_file = data_vector[12];
   // look_up_table(data_vector);
