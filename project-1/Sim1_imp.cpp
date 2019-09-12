@@ -36,36 +36,6 @@ void read_file(string file, vector<string> &vector)
   else cout << "Unable to open file";
 }
 
-/* -----------------------------------------------------------------------------
-function name: write_file
-description: takes file contents and writes to specified file
------------------------------------------------------------------------------ */
-// void write_file(string file)
-// {
-//   string line;
-//   // ifstream log;
-//   // ofstream out_file;
-
-//   ofstream out_file("config_test.mdf", ios::app);
-
-//   // out_file.open("Test_1a.mdf");
-//   config_file.open(file);
-
-//   //prints any file input below(currently prints to console)
-//   if (config_file.is_open())
-//   {
-//     while (getline(config_file,line))
-//     {
-//       out_file << line << '\n';
-//     }
-//     config_file.close();
-//   }
-//   else cout << "Unable to open file";
-//   out_file.close();
-
-// }
-
-
 
 /* -----------------------------------------------------------------------------
 function name: file_interpretation
@@ -134,7 +104,7 @@ bool meta_validity(vector<string> &data_vector)
 function name: meta_parser
 description: takes meta contents and extracts keywords, and operations...multiple embeed function calls
 ----------------------------------------------------------------------------- */
-void meta_parser(vector<string> &data_vector, string meta_file, vector<string> &meta_vector)
+void meta_parser(vector<string> &data_vector, string meta_file, vector<string> &meta_vector, ofstream &file_logger)
 {
   ifstream data_file;
   string line, keyword;
@@ -146,6 +116,7 @@ void meta_parser(vector<string> &data_vector, string meta_file, vector<string> &
   data_file.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
   cout << "\nMeta-Data Metrics" << endl;    //this is for logging to monitor
+  file_logger << "\nMeta-Data Metrics" << endl;
 
   while(!data_file.eof())
   {
@@ -163,19 +134,22 @@ void meta_parser(vector<string> &data_vector, string meta_file, vector<string> &
       if(meta_char != 'S' && meta_char != 'A')
       {
         cout << meta_char;
+        file_logger << meta_char;
       }
       keyword = get_keyword(line);
       if(keyword != "begin" && keyword != "finish")
       {
         cout << "{" << keyword << "}";
+        file_logger << "{" << keyword << "}";
       }
       duty_cycles = num_of_cycles(line);
       if(duty_cycles != 0)
       {
         cout << duty_cycles << " - ";
+        file_logger << duty_cycles << " - ";
       }
       
-      calculations(data_vector, keyword, duty_cycles, meta_char);
+      calculations(data_vector, keyword, duty_cycles, meta_char, file_logger);
       //put calculations function right here pass it the duty_cycles and keyword and data_vector
     }
   }
@@ -276,7 +250,7 @@ description: this is where we are going to compare the keyword with a look up ta
               keyword and then mulitply it by the staic index of the data vector that is
               forehandedly associated with the keyword
 ----------------------------------------------------------------------------- */
-void calculations(vector<string> &data_vector, string key_word, int cycles, char letter)
+void calculations(vector<string> &data_vector, string key_word, int cycles, char letter, ofstream &file_logger)
 {
   int result, temp;
   
@@ -290,18 +264,21 @@ void calculations(vector<string> &data_vector, string key_word, int cycles, char
     temp = stoi(data_vector[4]);    //without stoi you will get an error
     result = cycles * temp;       //cant mult int by vector element
     cout << result << " ms" << endl;
+    file_logger << result << " ms" << endl;
   }
   if(key_word == "allocate")
   {
     temp = stoi(data_vector[8]);
     result = cycles * temp;
     cout << result << " ms" << endl;
+    file_logger << result << " ms" << endl;
   }
   if(key_word == "monitor")
   {
     temp = stoi(data_vector[3]);
     result = cycles * temp;
     cout << result << " ms" << endl;
+    file_logger << result << " ms" << endl;
 
   }
   if(key_word == "harddrive")
@@ -309,30 +286,35 @@ void calculations(vector<string> &data_vector, string key_word, int cycles, char
     temp = stoi(data_vector[6]);
     result = cycles * temp;
     cout << result << " ms" << endl;
+    file_logger << result << " ms" << endl;
   }
   if(key_word == "mouse")
   {
     temp = stoi(data_vector[5]);
     result = cycles * temp;
     cout << result << " ms" << endl;
+    file_logger << result << " ms" << endl;
   }
   if(key_word == "printer")
   {
     temp = stoi(data_vector[9]);
     result = cycles * temp;
     cout << result << " ms" << endl;
+    file_logger << result << " ms" << endl;
   }
   if(key_word == "block")
   {
     temp = stoi(data_vector[8]);
     result = cycles * temp;
     cout << result << " ms" << endl;
+    file_logger << result << " ms" << endl;
   }
   if(key_word == "keyboard")
   {
     temp = stoi(data_vector[7]);
     result = cycles * temp;
     cout << result << " ms" << endl;
+    file_logger << result << " ms" << endl;
   }
   if (key_word == "finish")
   {
@@ -341,22 +323,45 @@ void calculations(vector<string> &data_vector, string key_word, int cycles, char
   }
 }
 
-void output(vector<string> &data_vector)
+/* -----------------------------------------------------------------------------
+function name: output
+description: outputs all information to monitor and file
+----------------------------------------------------------------------------- */
+void output(vector<string> &data_vector, ofstream &file_logger)
 {
-  // for (int i = 0; i < data_vector.size(); i++)
-  // {
-  //   cout << data_vector[i] << " " << i << endl;
-  // }
-
   cout << "\nConfiguration File Data" << endl;
+  file_logger << "Configuration File Data" << endl;
   cout << "Monitor = " << data_vector[3] << " ms/cycle" << endl;
+  file_logger << "Monitor = " << data_vector[3] << " ms/cycle" << endl;
   cout << "Processor = " << data_vector[4] << " ms/cycle" << endl;
+  file_logger << "Processor = " << data_vector[4] << " ms/cycle" << endl;
   cout << "Mouse = " << data_vector[5] << " ms/cycle" << endl;
+  file_logger << "Mouse = " << data_vector[5] << " ms/cycle" << endl;
   cout << "Hard Drive = " << data_vector[6] << " ms/cycle" << endl;
+  file_logger << "Hard Drive = " << data_vector[6] << " ms/cycle" << endl;
   cout << "Keyboard = " << data_vector[7] << " ms/cycle" << endl;
+  file_logger << "Keyboard = " << data_vector[7] << " ms/cycle" << endl;
   cout << "Memory = " << data_vector[8] << " ms/cycle" << endl;
+  file_logger << "Memory = " << data_vector[8] << " ms/cycle" << endl;
   cout << "Printer = " << data_vector[9] << " ms/cycle" << endl;
+  file_logger << "Printer = " << data_vector[9] << " ms/cycle" << endl;
   // cout << "Logged to: " << data_vector[10] << " ms/cycle" << endl;
-
 }
+
+
+bool config_validity(string conf_file)
+{
+  ofstream test_file;
+  test_file.open(conf_file);
+
+  if(test_file.is_open())
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+
 
