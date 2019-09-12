@@ -142,13 +142,128 @@ void look_up_table(vector<string> &data_vector)
   }
 }
 
-
+/* -----------------------------------------------------------------------------
+function name: meta_parser
+description: takes meta contents and extracts keywords, and operations...multiple embeed function calls
+----------------------------------------------------------------------------- */
 void meta_parser(string meta_file, vector<string> &meta_vector)
 {
   ifstream data_file;
+  string line, keyword;
+  bool status;
+  char meta_char;
+  int duty_cycles;
+
   data_file.open(meta_file);
 
   data_file.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+  while(!data_file.eof())
+  {
+    data_file >> line;
+    if (line.find("hard") != -1)
+    {
+      string prev_line = line;
+      data_file >> line;
+      line = prev_line + line;
+    }
+    status = is_line_valid(line);
+    if(status == true)
+    {
+      meta_char = get_command(line);
+      keyword = get_keyword(line);
+      duty_cycles = num_of_cycles(line);
+    }
+    // meta_char = get_command(line);
+    // keyword = get_keyword(line);
+  }
+}
+
+/* -----------------------------------------------------------------------------
+function name: is_line_valid
+description: checks the validity of the opertion from meta data tag
+----------------------------------------------------------------------------- */
+bool is_line_valid(string &line)
+{
+  char first_char = line[0];
+  // cout << first_char << endl;
+  if (line.find('{') != -1)
+  {
+    // cout << "y" << endl;
+    return true;
+  }
+  else
+  {
+    // cout << "n" << endl;
+    return false;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+function name: num_of_cycles
+description: extracts the integer value of duty cycles for each meta operation
+----------------------------------------------------------------------------- */
+int num_of_cycles(string &line)
+{
+  int cycles, start;
+  string temp;
+
+    start = (line.find('}')+1);
+    for (int i= start; i<line.length(); i++){
+        temp += line[i];
+    }
+    try {
+        cycles = stoi(temp);
+    } catch (const std::invalid_argument& i) {
+        cout << "\nArgument Not a number!\n";
+        return 0;
+    }
+    return cycles;
+}
+
+/* -----------------------------------------------------------------------------
+function name: get_command
+description: acquires the first character in meta tag from meta file
+----------------------------------------------------------------------------- */
+char get_command(string &line)
+{
+  char character = line[0];
+  try
+  {
+    if(!isalpha(character))
+    {
+      throw(11);
+    }
+    if(!isupper(character))
+    {
+      throw(11);
+    }
+  }
+  catch(int i)
+  {
+    cout << "INVALID COMMAND " << character << endl;
+    return 0;
+  }
+  // cout << character << endl;
+  return character;
+}
+
+/* -----------------------------------------------------------------------------
+function name: get_keyword
+description: acquires the keyword in between braces from meta data tag
+----------------------------------------------------------------------------- */
+string get_keyword(string &line)
+{
+  string keyword;
+  int first;
+
+  first = (line.find('{') + 1);
+
+  for (int i = first; line[i] != '}'; i++)
+  {
+    keyword += line[i];
+  }
+  // cout << keyword << endl;
+  return keyword;
 }
 
 // /* -----------------------------------------------------------------------------
@@ -168,7 +283,6 @@ void meta_parser(string meta_file, vector<string> &meta_vector)
 //     cout << keyword;
 //     return keyword;
 // }
-
 
 // char getCommand (string &line) {
 //     char letter = line[0];
