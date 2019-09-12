@@ -32,6 +32,8 @@ int main(int argc, char *argv[])
     file_interpretation(holder, data_vector);
   }
 
+  output(data_vector);
+
   //checks validity of the meta data file name extrtacted from the configuration file
   validity = meta_validity(data_vector);
   if(validity == false)
@@ -41,20 +43,12 @@ int main(int argc, char *argv[])
   }
   else
   {
-    meta_data_file = data_vector[3];
+    meta_data_file = data_vector[2];
     read_file(meta_data_file, meta_data_vector);
   }
 
+ //time to do the meat of the program, calculations
   meta_parser(data_vector, meta_data_file, meta_data_vector);
   
-  // for (int i = 0; i < data_vector.size(); i++)
-  // {
-  //   cout << data_vector[i] << " " << i << endl;
-  // }
-
-  log_file = data_vector[12];
-  cout << log_file << endl;
-  // look_up_table(data_vector);
-
   return 0;
 }

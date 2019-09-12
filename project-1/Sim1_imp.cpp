@@ -114,7 +114,7 @@ bool meta_validity(vector<string> &data_vector)
   ifstream meta_file;   //ifstream that will open the meta data file
   bool status;
 
-  file_name = data_vector[3];
+  file_name = data_vector[2];
   meta_file.open(file_name);
 
   if(meta_file.is_open())
@@ -131,18 +131,6 @@ bool meta_validity(vector<string> &data_vector)
 
 
 /* -----------------------------------------------------------------------------
-function name: look_up_table
-description: takes the elements of the data-Vector and associates it with a operator keycharacter
------------------------------------------------------------------------------ */
-void look_up_table(vector<string> &data_vector)
-{
-    for (int i = 0; i < data_vector.size(); i++)
-  {
-    cout << data_vector[i] << " " << i << endl;
-  }
-}
-
-/* -----------------------------------------------------------------------------
 function name: meta_parser
 description: takes meta contents and extracts keywords, and operations...multiple embeed function calls
 ----------------------------------------------------------------------------- */
@@ -155,8 +143,10 @@ void meta_parser(vector<string> &data_vector, string meta_file, vector<string> &
   int duty_cycles;
 
   data_file.open(meta_file);
+  data_file.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-  data_file.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+  cout << "\nMeta-Data Metrics" << endl;    //this is for logging to monitor
+
   while(!data_file.eof())
   {
     data_file >> line;
@@ -170,8 +160,21 @@ void meta_parser(vector<string> &data_vector, string meta_file, vector<string> &
     if(status == true)
     {
       meta_char = get_command(line);
+      if(meta_char != 'S' && meta_char != 'A')
+      {
+        cout << meta_char;
+      }
       keyword = get_keyword(line);
+      if(keyword != "begin" && keyword != "finish")
+      {
+        cout << "{" << keyword << "}";
+      }
       duty_cycles = num_of_cycles(line);
+      if(duty_cycles != 0)
+      {
+        cout << duty_cycles << " - ";
+      }
+      
       calculations(data_vector, keyword, duty_cycles, meta_char);
       //put calculations function right here pass it the duty_cycles and keyword and data_vector
     }
@@ -284,47 +287,52 @@ void calculations(vector<string> &data_vector, string key_word, int cycles, char
   }
   if(key_word == "run")
   {
-    temp = stoi(data_vector[5]);    //without stoi you will get an error
+    temp = stoi(data_vector[4]);    //without stoi you will get an error
     result = cycles * temp;       //cant mult int by vector element
-    // cout << result << endl;
+    cout << result << " ms" << endl;
   }
   if(key_word == "allocate")
   {
-    temp = stoi(data_vector[9]);
+    temp = stoi(data_vector[8]);
     result = cycles * temp;
-    // cout << result << endl;
+    cout << result << " ms" << endl;
   }
   if(key_word == "monitor")
   {
-    temp = stoi(data_vector[4]);
+    temp = stoi(data_vector[3]);
     result = cycles * temp;
+    cout << result << " ms" << endl;
+
   }
   if(key_word == "harddrive")
   {
-    temp = stoi(data_vector[7]);
+    temp = stoi(data_vector[6]);
     result = cycles * temp;
-    // cout << result << endl;
+    cout << result << " ms" << endl;
   }
   if(key_word == "mouse")
   {
-    temp = stoi(data_vector[6]);
+    temp = stoi(data_vector[5]);
     result = cycles * temp;
-    // cout << result << endl;
+    cout << result << " ms" << endl;
   }
   if(key_word == "printer")
   {
-    temp = stoi(data_vector[10]);
+    temp = stoi(data_vector[9]);
     result = cycles * temp;
+    cout << result << " ms" << endl;
   }
   if(key_word == "block")
   {
-    temp = stoi(data_vector[9]);
+    temp = stoi(data_vector[8]);
     result = cycles * temp;
+    cout << result << " ms" << endl;
   }
   if(key_word == "keyboard")
   {
-    temp = stoi(data_vector[8]);
+    temp = stoi(data_vector[7]);
     result = cycles * temp;
+    cout << result << " ms" << endl;
   }
   if (key_word == "finish")
   {
@@ -333,36 +341,22 @@ void calculations(vector<string> &data_vector, string key_word, int cycles, char
   }
 }
 
-// /* -----------------------------------------------------------------------------
-// function name: meta_validity
-// description: checks if the extracted file name for the meta data file is valid
-// ----------------------------------------------------------------------------- */
-// string getKeyword (string &line) {
-//     string keyword;
-//     int start;
-//     start = (line.find('{')+1);
-//     for( int i = start; line[i]!= '}'; i++){
-//         keyword += line[i];
-//         // cout << "keyword[]:" << keyword[i-start] << endl;
-//         // cout << "line[]:" << line[i] << endl;
+void output(vector<string> &data_vector)
+{
+  // for (int i = 0; i < data_vector.size(); i++)
+  // {
+  //   cout << data_vector[i] << " " << i << endl;
+  // }
 
-//     }
-//     cout << keyword;
-//     return keyword;
-// }
+  cout << "\nConfiguration File Data" << endl;
+  cout << "Monitor = " << data_vector[3] << " ms/cycle" << endl;
+  cout << "Processor = " << data_vector[4] << " ms/cycle" << endl;
+  cout << "Mouse = " << data_vector[5] << " ms/cycle" << endl;
+  cout << "Hard Drive = " << data_vector[6] << " ms/cycle" << endl;
+  cout << "Keyboard = " << data_vector[7] << " ms/cycle" << endl;
+  cout << "Memory = " << data_vector[8] << " ms/cycle" << endl;
+  cout << "Printer = " << data_vector[9] << " ms/cycle" << endl;
+  // cout << "Logged to: " << data_vector[10] << " ms/cycle" << endl;
 
-// char getCommand (string &line) {
-//     char letter = line[0];
-//     try {
-//         if (!isalpha(letter)) {
-//             throw (11);
-//         if (!isupper(letter)) {
-//             throw(11);
-//             }
-//         }
-//     } catch (int i) {
-//         cout << "\nINVALID COMMAND: " << letter << endl;
-//         return 0;
-//     }
-//     return letter;
-// }
+}
+
