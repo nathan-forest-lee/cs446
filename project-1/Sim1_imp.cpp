@@ -294,6 +294,43 @@ void calculations(vector<string> &data_vector, string key_word, int cycles, char
     result = cycles * temp;
     // cout << result << endl;
   }
+  if(key_word == "monitor")
+  {
+    temp = stoi(data_vector[4]);
+    result = cycles * temp;
+  }
+  if(key_word == "harddrive")
+  {
+    temp = stoi(data_vector[7]);
+    result = cycles * temp;
+    // cout << result << endl;
+  }
+  if(key_word == "mouse")
+  {
+    temp = stoi(data_vector[6]);
+    result = cycles * temp;
+    // cout << result << endl;
+  }
+  if(key_word == "printer")
+  {
+    temp = stoi(data_vector[10]);
+    result = cycles * temp;
+  }
+  if(key_word == "block")
+  {
+    temp = stoi(data_vector[9]);
+    result = cycles * temp;
+  }
+  if(key_word == "keyboard")
+  {
+    temp = stoi(data_vector[8]);
+    result = cycles * temp;
+  }
+  if (key_word == "finish")
+  {
+    // cout << "bhere" << endl;
+    return;
+  }
 }
 
 // /* -----------------------------------------------------------------------------

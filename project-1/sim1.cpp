@@ -53,6 +53,7 @@ int main(int argc, char *argv[])
   // }
 
   log_file = data_vector[12];
+  cout << log_file << endl;
   // look_up_table(data_vector);
 
   return 0;
