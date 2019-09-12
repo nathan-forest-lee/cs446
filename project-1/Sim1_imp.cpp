@@ -172,7 +172,8 @@ void meta_parser(vector<string> &data_vector, string meta_file, vector<string> &
       meta_char = get_command(line);
       keyword = get_keyword(line);
       duty_cycles = num_of_cycles(line);
-      //put calculations function right here pass it the duty_cycles and keyword and data_vector 
+      calculations(data_vector, keyword, duty_cycles, meta_char);
+      //put calculations function right here pass it the duty_cycles and keyword and data_vector
     }
   }
 }
@@ -272,20 +273,28 @@ description: this is where we are going to compare the keyword with a look up ta
               keyword and then mulitply it by the staic index of the data vector that is
               forehandedly associated with the keyword
 ----------------------------------------------------------------------------- */
-// void calculations(vector<string> &data_vector, string key_word, int cycles, char letter)
-// {
-//   int result, temp;
-
-//   if (key_word == "begin")
-//   {
-//     return;
-//   }
-//   if(key_word == "run")
-//   {
-//     temp = data_vector[5];
-//     result = cycles * data_vector[5];
-//   }
-// }
+void calculations(vector<string> &data_vector, string key_word, int cycles, char letter)
+{
+  int result, temp;
+  
+  if (key_word == "begin")
+  {
+    // cout << "bhere" << endl;
+    return;
+  }
+  if(key_word == "run")
+  {
+    temp = stoi(data_vector[5]);    //without stoi you will get an error
+    result = cycles * temp;       //cant mult int by vector element
+    // cout << result << endl;
+  }
+  if(key_word == "allocate")
+  {
+    temp = stoi(data_vector[9]);
+    result = cycles * temp;
+    // cout << result << endl;
+  }
+}
 
 // /* -----------------------------------------------------------------------------
 // function name: meta_validity
