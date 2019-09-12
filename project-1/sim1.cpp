@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     read_file(meta_data_file, meta_data_vector);
   }
 
-  meta_parser(meta_data_file, meta_data_vector);
+  meta_parser(data_vector, meta_data_file, meta_data_vector);
   
   // for (int i = 0; i < data_vector.size(); i++)
   // {

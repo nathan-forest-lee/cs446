@@ -146,7 +146,7 @@ void look_up_table(vector<string> &data_vector)
 function name: meta_parser
 description: takes meta contents and extracts keywords, and operations...multiple embeed function calls
 ----------------------------------------------------------------------------- */
-void meta_parser(string meta_file, vector<string> &meta_vector)
+void meta_parser(vector<string> &data_vector, string meta_file, vector<string> &meta_vector)
 {
   ifstream data_file;
   string line, keyword;
@@ -264,6 +264,28 @@ string get_keyword(string &line)
   // cout << keyword << endl;
   return keyword;
 }
+
+/* -----------------------------------------------------------------------------
+function name: calculations
+description: this is where we are going to compare the keyword with a look up table, 
+              depending on the keyword we will then get the duty cycle associate with the
+              keyword and then mulitply it by the staic index of the data vector that is
+              forehandedly associated with the keyword
+----------------------------------------------------------------------------- */
+// void calculations(vector<string> &data_vector, string key_word, int cycles, char letter)
+// {
+//   int result, temp;
+
+//   if (key_word == "begin")
+//   {
+//     return;
+//   }
+//   if(key_word == "run")
+//   {
+//     temp = data_vector[5];
+//     result = cycles * data_vector[5];
+//   }
+// }
 
 // /* -----------------------------------------------------------------------------
 // function name: meta_validity
