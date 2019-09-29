@@ -113,7 +113,7 @@ void meta_parser(vector<string> &data_vector, string meta_file, vector<string> &
   int duty_cycles;
 
   data_file.open(meta_file);
-  data_file.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+  // data_file.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
   cout << "\nMeta-Data Metrics" << endl;    //this is for logging to monitor
   file_logger << "\nMeta-Data Metrics" << endl;
